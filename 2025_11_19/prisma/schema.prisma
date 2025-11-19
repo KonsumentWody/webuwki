@@ -1,0 +1,43 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = "mysql://root:@localhost:3306/zadanko"
+}
+
+
+
+
+model Kategoria {
+  id     Int     @id @default(autoincrement())
+  nazwa  String  @unique
+  wpisy  Wpis[]
+}
+
+model Wpis {
+  id            Int          @id @default(autoincrement())
+  tytul         String
+  tresc         String
+  utworzono     DateTime      @default(now())
+  zaktualizowano DateTime     @updatedAt
+  kategoriaId   Int?
+  kategoria     Kategoria?    @relation(fields: [kategoriaId], references: [id])
+  komentarze    Komentarz[]
+}
+
+model Komentarz {
+  id        Int      @id @default(autoincrement())
+  autor     String
+  tresc     String
+  utworzono DateTime  @default(now())
+  wpisId    Int
+  wpis      Wpis      @relation(fields: [wpisId], references: [id])
+}
