@@ -1,0 +1,45 @@
+@import '../../styles/global';
+
+.post-view {
+  max-width: 800px;
+  margin: 2rem auto;
+  animation: fadeIn 0.5s ease-in;
+
+  header {
+    text-align: center;
+    margin-bottom: 3rem;
+
+    h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      letter-spacing: -1px;
+    }
+
+    .meta {
+      color: $text-secondary;
+      font-weight: 500;
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+    }
+  }
+
+  .post-content {
+    background: $white;
+    padding: 3rem;
+    border-radius: 20px;
+    box-shadow: $shadow;
+    line-height: 1.8;
+    font-size: 1.1rem;
+
+    p {
+      margin-bottom: 1.5rem;
+    }
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
